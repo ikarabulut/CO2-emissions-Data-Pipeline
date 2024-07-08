@@ -1,0 +1,4 @@
+ipykernel==6.29.5
+databricks-connect==14.3.2
+pyspark==3.5.0
+python-dotenv==1.0.1
