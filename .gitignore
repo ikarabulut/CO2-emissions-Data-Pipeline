@@ -1,4 +1,6 @@
 .env
 .databricks
 .venv
-data/*
+data/emissions_data
+data/world_bank_data
+**/.DS_Store
