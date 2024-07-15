@@ -34,8 +34,8 @@ services:
         ulimit -n 65535;
         echo "# Enable data cache"  >> /opt/starrocks/be/conf/be.conf
         echo "block_cache_enable = true"  >> /opt/starrocks/be/conf/be.conf
-        echo "block_cache_mem_size = 536870912" >> /opt/starrocks/be/conf/be.conf
-        echo "block_cache_disk_size = 1073741824" >> /opt/starrocks/be/conf/be.conf
+        echo "block_cache_mem_size = 1073741824" >> /opt/starrocks/be/conf/be.conf
+        echo "block_cache_disk_size = 3221225472" >> /opt/starrocks/be/conf/be.conf
         sleep 15s
         mysql --connect-timeout 2 -h starrocks-fe -P 9030 -u root -e "ALTER SYSTEM ADD BACKEND \"starrocks-be:9050\";"
         /opt/starrocks/be/bin/start_be.sh
@@ -55,9 +55,8 @@ services:
       iceberg_net:
 
   spark-iceberg:
-    image: tabulario/spark-iceberg
+    build: ./spark
     container_name: spark-iceberg
-    build: spark/
     networks:
       iceberg_net:
     depends_on:
@@ -74,6 +73,10 @@ services:
     ports:
       - 8888:8888
       - 8080:8080
+      - 4040:4040
+      - 4041:4041
+      - 4042:4042
+      - 4043:4043
       - 10000:10000
       - 10001:10001
   rest:
