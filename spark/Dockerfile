@@ -20,6 +20,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
       sudo \
       curl \
+      mariadb-server \
       vim \
       unzip \
       openjdk-11-jdk \
